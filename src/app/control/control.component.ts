@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { ConfigService } from '../config/config.service';
 import { NotificationType } from '../model';
@@ -16,13 +16,10 @@ export class ControlComponent {
   public printerProfile: OctoprintPrinterProfile;
 
   public jogDistance = 10;
+  private configService: ConfigService = inject(ConfigService);
   public showExtruder = this.configService.getShowExtruderControl();
 
-  public constructor(
-    private printerService: PrinterService,
-    private configService: ConfigService,
-    private notificationService: NotificationService,
-  ) {
+  public constructor(private printerService: PrinterService, private notificationService: NotificationService) {
     this.printerService.getActiveProfile().subscribe({
       next: (printerProfile: OctoprintPrinterProfile) => (this.printerProfile = printerProfile),
       error: (error: HttpErrorResponse) => {
