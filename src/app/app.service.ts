@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import _ from 'lodash-es';
 
+import { defaultConfig } from './config/config.default';
 import { Config } from './config/config.model';
 import { ConfigService } from './config/config.service';
 import { ElectronService } from './electron.service';
@@ -54,6 +55,8 @@ export class AppService {
         (config.octodash.showExtruderControl = true),
       "/plugins must have required property 'spoolManager'": config =>
         (config.plugins.spoolManager = { enabled: false }),
+      "/plugins must have required property 'spoolman'": config =>
+        (config.plugins.spoolman = { ...defaultConfig.plugins.spoolman }),
       "/plugins must have required property 'ophom'": config => (config.plugins.ophom = { enabled: false }),
       "/octodash must have required property 'showNotificationCenterIcon'": config =>
         (config.octodash.showNotificationCenterIcon = true),

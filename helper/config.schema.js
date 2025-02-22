@@ -114,6 +114,7 @@ const configSchema = {
         'enclosure',
         'filamentManager',
         'spoolManager',
+        'spoolman',
         'preheatButton',
         'printTimeGenius',
         'psuControl',
@@ -175,6 +176,17 @@ const configSchema = {
           properties: {
             enabled: {
               $id: '#/properties/plugins/properties/spoolManager/properties/enabled',
+              type: 'boolean',
+            },
+          },
+        },
+        spoolman: {
+          $id: '#/properties/plugins/properties/spoolman',
+          type: 'object',
+          required: ['enabled'],
+          properties: {
+            enabled: {
+              $id: '#/properties/plugins/properties/spoolman/properties/enabled',
               type: 'boolean',
             },
           },
